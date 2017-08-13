@@ -37,7 +37,6 @@ Before making useful calls to Clubhouse, create an instance of `Clubhouse`, prov
 ```php
     
     $token = '213901-dk9AJ-3SOJ-8dj9-KAAa0smsa';
-
     $clubhouse = new Clubhouse($token);
 
 ```
@@ -48,11 +47,11 @@ Before making useful calls to Clubhouse, create an instance of `Clubhouse`, prov
 
 ```php
 //Return an array of all Epics
-$users = $clubhouse->get('users');
+$epics = $clubhouse->get('epics');
 
-//Return Epic 20, as an array
-$epic_id = 20;
-$users = $clubhouse->get('users', $epic_id);
+//Return specific epic, as an array
+$epic_id = 'JDaa9k-29d3-40s2-a4dc-a9bsd29sc';
+$epic = $clubhouse->get('epic', $epic_id);
 ```
 
 ### Update
@@ -89,6 +88,17 @@ $users = $clubhouse->get('users', $epic_id);
 ## Stories
 
 ## Users
+
+### Get
+
+```php
+//Return an array of all Uusers
+$users = $clubhouse->get('users');
+
+//Return specific user , as an array
+$user_id = '4JDaa9k-29d3-40s2-a4dc-a9bsd29sc';
+$user = $clubhouse->get('users', $user_id);
+```
 
 ## Workflows
 

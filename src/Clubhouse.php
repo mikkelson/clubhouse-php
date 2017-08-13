@@ -2,7 +2,9 @@
 
 namespace Mikkelson;
 
-class ClubhouseException extends \Exception {}
+class ClubhouseException extends \Exception {
+    
+}
 
 class Clubhouse {
 
@@ -27,7 +29,10 @@ class Clubhouse {
      * @return array
      */
 
-    public function get($uri = null, $data = null) {
+    public function get($uri = null, $id = null) {
+        if (!empty($id)) {
+            $uri = $uri . '/' . $id;
+        }
         return $this->request($uri, 'get');
     }
 
@@ -70,7 +75,6 @@ class Clubhouse {
     private function request($uri, $type = 'get', $fields = null) {
 
         $ch = curl_init($this->endpoint . $uri . '?token=' . $this->token);
-
         if (!empty($fields)) {
             $fields = json_encode($fields);
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
