@@ -37,14 +37,20 @@ class Clubhouse {
     }
 
     /*
-     * Clubhouse HTTP POST operations
+     * Clubhouse Update operations
      * @param string $uri api method
-     * @param array $data to POST
-     * @return array
+     * @param string $id of resource to update
+     * @return array $data for update
      */
 
-    public function post($uri = null, $data = null) {
-        return $this->request($uri, 'post', $data);
+    public function update($uri = null, $id, $data) {
+
+        if (empty($id) || empty($data)) {
+            //return clubhouse style error
+            return array('message' => 'You must provide an id and data to update');
+        }
+
+        return $this->request($uri . '/' . $id, 'put', $data);
     }
 
     /*
@@ -58,7 +64,7 @@ class Clubhouse {
 
         if (empty($id)) {
             //return clubhouse style error
-            return array('message' => 'You must provide an ID to delete');
+            return array('message' => 'You must provide an id to delete');
         }
 
         return $this->request($uri . '/' . $id, 'delete');
@@ -75,15 +81,13 @@ class Clubhouse {
     private function request($uri, $type = 'get', $fields = null) {
 
         $ch = curl_init($this->endpoint . $uri . '?token=' . $this->token);
+        
         if (!empty($fields)) {
             $fields = json_encode($fields);
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
             curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
         }
-
-        if ($type == 'delete') {
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-        }
+        
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

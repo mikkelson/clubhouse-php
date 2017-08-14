@@ -53,6 +53,18 @@ $epic = $clubhouse->get('epics', $epic_id);
 ```
 
 ### Update
+
+Update Epic can be used to update numerous fields in the Epic. See [complete list of available fields](https://clubhouse.io/api/v1/#update-epic).
+
+```php
+$epic_id = "4351";
+$data = [
+    'description' => 'Keep your developers happy by providing detailed descriptions (-;',
+    'state' => 'to do'
+];
+$update = $clubhouse->update('epics', $epic_id, $data);
+```
+
 ### Delete
 
 Deletes an Epic
