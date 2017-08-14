@@ -45,18 +45,32 @@ Before making useful calls to Clubhouse, create an instance of `Clubhouse`, prov
 
 ### Get
 
-```php
-//Return an array of all Epics
-$epics = $clubhouse->get('epics');
+Get Epic returns information about the selected Epic.
 
-//Return specific epic, as an array
-$epic_id = 'JDaa9k-29d3-40s2-a4dc-a9bsd29sc';
-$epic = $clubhouse->get('epic', $epic_id);
+```php
+$epic_id = '3000';
+$epic = $clubhouse->get('epics', $epic_id);
 ```
 
 ### Update
 ### Delete
+
+Deletes an Epic
+
+
+```php
+$epic_id = '3000';
+$clubhouse->delete('epics', $epic_id);
+```
+
 ### List
+
+List Epics returns a list of all Epics and their attributes.
+
+```php
+$epics = $clubhouse->get('epics');
+```
+
 ### Create
 
 ## Files
@@ -89,16 +103,30 @@ $epic = $clubhouse->get('epic', $epic_id);
 
 ## Users
 
-### Get
+### List
+
+List Users returns information about users in the organization.
 
 ```php
-//Return an array of all Uusers
 $users = $clubhouse->get('users');
+```
 
-//Return specific user , as an array
+### Get
+
+Returns information about a User.
+
+```php
 $user_id = '4JDaa9k-29d3-40s2-a4dc-a9bsd29sc';
 $user = $clubhouse->get('users', $user_id);
 ```
 
 ## Workflows
+
+### List
+
+List Workflows returns a list containing the single Workflow in the organization and its attributes.
+
+```php
+$workflows = $clubhouse->get('workflows');
+```
 
