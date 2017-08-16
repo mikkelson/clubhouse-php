@@ -147,18 +147,110 @@ $files = $clubhouse->get('files');
 
 ## Labels
 
-### Get
+### Create
+
+Create Label allows you to create a new Label in Clubhouse.
+
+```php
+$new_label = [
+    'external_id' => 'thirdparty-id-123',
+    'name' => 'My New Label'
+];
+
+$label = $clubhouse->create('labels', $new_label);
+```
+
 ### Update
+
+Update Label allows you to replace a Label name with another name. If you try to name a Label something that already exists, you will receive a 422 response.
+
+```php
+$label_id = "1234";
+
+$data = [
+    'name' => 'Updated Label Name'
+];
+
+$label = $clubhouse->update('labels', $label_id, $data);
+```
+
 ### Delete
+
+Delete Label can be used to delete any Label.
+
+```php
+$label_id = '3000';
+
+$clubhouse->delete('labels', $label_id);
+```
+
 ### List
+
+List Labels returns a list of all Labels and their attributes.
+
+```php
+$labels = $clubhouse->get('labels');
+```
 
 ## Linked-Files
 
 ### Get
-### Update
-### Delete
-### List
+
+Get File returns information about the selected Linked File.
+
+```php
+$link_id = 5000;
+
+$linked_files = $clubhouse->get('linked-files', $link_id);
+```
+
 ### Create
+
+Create Linked File allows you to create a new Linked File in Clubhouse. See [complete list of available fields](https://clubhouse.io/api/v1/#create-linked-file)
+
+```php
+$new_link = [
+    'name' => 'My Linked File',
+    'description' => 'Description of the file',
+    'type' => 'dropbox',
+    'url' => 'http://dropbox.com/1sjsSA9Q/asd20j.txt
+];
+
+$linked_file = $clubhouse->create('linked-files', $new_link);
+```
+
+### Update
+
+Updated Linked File allows you to update properties of a previously attached Linked-File. See [complete list of available fields](https://clubhouse.io/api/v1/#update-linked-file)
+
+```php
+$link_id = "1234";
+
+$data = [
+    'name' => 'New name for linked file',
+    'description' => 'Description of new linked file'
+];
+
+$linked_file = $clubhouse->update('linked-files', $link_id, $data);
+```
+
+### Delete
+
+Delete Linked File can be used to delete any previously attached Linked-File.
+
+```php
+$link_id = '3000';
+
+$clubhouse->delete('linked-files', $link_id);
+```
+
+### List
+
+List Linked Files returns a list of all Linked-Files and their attributes.
+
+```php
+$linked_files = $clubhouse->get('linked-files');
+```
 
 ## Projects
 
