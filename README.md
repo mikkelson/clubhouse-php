@@ -125,6 +125,7 @@ $data = [
 ];
 
 $update = $clubhouse->update('files', $file_id, $data);
+```
 
 ### Delete
 
