@@ -1,6 +1,6 @@
-# Clubhouse.io REST API PHP Wrapper
+# Clubhouse.io REST API php Wrapper
 
-This is a lightweight PHP wrapper for the Clubhouse.io REST version 1 API.
+This is a lightweight php wrapper for the Clubhouse.io REST version 1 API.
 
 ## Installation
 
