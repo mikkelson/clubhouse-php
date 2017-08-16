@@ -73,7 +73,6 @@ $update = $clubhouse->update('epics', $epic_id, $data);
 
 Deletes an Epic
 
-
 ```php
 $epic_id = '3000';
 
@@ -105,9 +104,45 @@ $epic = $clubhouse->create('epics', $new_epic);
 ## Files
 
 ### Get
+
+Get File returns information about the selected File.
+
+```php
+$file_id = '3000';
+
+$file = $clubhouse->get('files', $file_id);
+```
 ### Update
+
+Update File can used to update the properties of a file uploaded to Clubhouse. See [complete list of available fields](https://clubhouse.io/api/v1/#update-file).
+
+```php
+$file_id = "4351";
+
+$data = [
+    'description' => 'This file contains all of my most important passwords, in plain text.',
+    'name' => 'Paswords.txt'
+];
+
+$update = $clubhouse->update('files', $file_id, $data);
+
 ### Delete
+
+Delete File can be used to delete any previously attached File.
+
+```php
+$file_id = '3000';
+
+$clubhouse->delete('files', $file_id);
+```
+
 ### List
+
+List Files returns a list of all Files and related attributes in your Clubhouse.
+
+```php
+$files = $clubhouse->get('files');
+```
 
 ## Labels
 
