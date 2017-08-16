@@ -254,7 +254,98 @@ $linked_files = $clubhouse->get('linked-files');
 
 ## Projects
 
+### Get 
+
+Get Project returns information about the selected Project.
+
+```php
+$project_id = '2990';
+
+$project = $clubhouse->get('projects', $project_id);
+```
+
+### Create
+
+Create Project is used to create a new Clubhouse Project. See [complete list of available fields](https://clubhouse.io/api/v1/#create-project)
+
+```php
+$new_project = [
+    'name' => 'New Clubhouse Project',
+    'description' => 'Description of the project',
+    'abbreviation' => 'ncp'
+];
+
+$project = $clubhouse->create('projects', $new_project);
+```
+
+### Update 
+
+Update Project can be used to change properties of a Project.  See [complete list of available fields](https://clubhouse.io/api/v1/#update-project)
+
+```php
+$project_id = "1234";
+
+$data = [
+    'name' => 'New name for project',
+    'description' => 'Description update text'
+];
+
+$project = $clubhouse->update('projects', $project_id, $data);
+```
+
+### Delete
+
+Delete Project can be used to delete a Project. Projects can only be deleted if all associated Stories are moved or deleted. In the case that the Project cannot be deleted, you will receive a 422 response.
+
+```php
+$project_id = '3000';
+
+$clubhouse->delete('projects', $project_id);
+```
+
+### List
+
+List Projects returns a list of all Projects and their attributes.
+
+```php
+$projects = $clubhouse->get('projects');
+```
+
 ## Story-Links
+
+### Create
+
+Story links allow you create semantic relationships between two stories. Relationship types are relates to, blocks / blocked by, and duplicates / is duplicated by. The format is subject -> link -> object, or for example “story 5 blocks story 6”. See [complete list of available fields](https://clubhouse.io/api/v1/#create-story-link)
+
+```php
+$new_link = [
+    'object_id' => 100,
+    'subject_id' => 250,
+    'verb' => 'blocks' //blocks, relates, duplicates
+];
+
+$story_links = $clubhouse->create('story-links', $new_link);
+```
+
+### Get
+
+Returns information about the selected Story Link.
+
+```php
+$storylink_id = '3000';
+
+$story_links = $clubhouse->get('story-links', $storylink_id);
+```
+
+### Delete
+
+Delete Story-Link can be used to delete any Story Link.
+
+```php
+$storylink_id = '3000';
+
+$clubhouse->delete('story-links', $storylink_id);
+```
 
 ## Stories
 
