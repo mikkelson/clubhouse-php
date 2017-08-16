@@ -85,6 +85,17 @@ $epics = $clubhouse->get('epics');
 
 ### Create
 
+Create Epic allows you to create a new Epic in Clubhouse. See [complete list of available fields](https://clubhouse.io/api/v1/#create-epic).
+
+```php
+$new_epic = [
+    'deadline' => '2020-08-16T12:30:00Z',
+    'name' => 'Terraforming of Mars',
+    'description' => 'Should be easy. Couple of astropeople, a trowel each. Easy.'
+];
+$epic = $clubhouse->create('epics', $new_epic);
+```
+
 ## Files
 
 ### Get

@@ -69,6 +69,22 @@ class Clubhouse {
 
         return $this->request($uri . '/' . $id, 'delete');
     }
+    
+    /*
+     * Clubhouse Create operations
+     * @param string $uri api method
+     * @return array $data to create
+     */
+
+    public function create($uri = null, $data) {
+
+        if (is_null($uri) || empty($data)) {
+            //return clubhouse style error
+            return array('message' => 'You must specify a resource to create, and provide data');
+        }
+
+        return $this->request($uri, 'post', $data);
+    }
 
     /*
      * Wraps and preforms curl request
