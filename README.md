@@ -21,7 +21,7 @@ Or, **without Composer**:
 Download this repo and include Clubhouse.php
 
 ```php
-include('src/Clubhouse.php');
+require_once('src/Clubhouse.php');
 ```
 
 ## Usage & Setup
@@ -283,7 +283,7 @@ $project = $clubhouse->create('projects', $new_project);
 Update Project can be used to change properties of a Project.  See [complete list of available fields](https://clubhouse.io/api/v1/#update-project)
 
 ```php
-$project_id = "1234";
+$project_id = 1234;
 
 $data = [
     'name' => 'New name for project',
@@ -298,7 +298,7 @@ $project = $clubhouse->update('projects', $project_id, $data);
 Delete Project can be used to delete a Project. Projects can only be deleted if all associated Stories are moved or deleted. In the case that the Project cannot be deleted, you will receive a 422 response.
 
 ```php
-$project_id = '3000';
+$project_id = 3000;
 
 $clubhouse->delete('projects', $project_id);
 ```
@@ -332,7 +332,7 @@ $story_links = $clubhouse->create('story-links', $new_link);
 Returns information about the selected Story Link.
 
 ```php
-$storylink_id = '3000';
+$storylink_id = 3000;
 
 $story_links = $clubhouse->get('story-links', $storylink_id);
 ```
@@ -342,12 +342,81 @@ $story_links = $clubhouse->get('story-links', $storylink_id);
 Delete Story-Link can be used to delete any Story Link.
 
 ```php
-$storylink_id = '3000';
+$storylink_id = 3000;
 
 $clubhouse->delete('story-links', $storylink_id);
 ```
 
 ## Stories
+
+### Search 
+
+Search Stories lets you search Stories based on desired parameters. While all parameters are optional, you must include at least one parameter in order to receive a response.
+
+See [complete list of available search parameters](https://clubhouse.io/api/v1/#search-stories)
+
+```php
+$params = [
+    'archived' => true,
+    'text' => 'code refactoring' //Full text search on Story names, comments, and descriptions.
+];
+
+$stories = $clubhouse->create('stories/search', $params);
+```
+
+### Create
+
+Create Story is used to add a new story to your Clubhouse. See [complete list of available fields](https://clubhouse.io/api/v1/#create-story)
+
+```php
+$new_story = [
+    'name' => 'New story with some tasks',
+    'project_id' => 6,
+    'story_type' => 'feature', //feature, chore, bug
+    'description' => 'Fuller descriptions make you more friends.',
+    'tasks' => [
+        ['description' => 'Task description 1'],
+        ['description' => 'Task description 2']
+    ]
+];
+
+$story = $clubhouse->create('stories', $new_story);
+```
+
+### Get
+
+Get Story returns information about a chosen Story.
+
+```php
+$story_id = 2000;
+
+$story = $clubhouse->get('stories', $story_id);
+```
+
+### Update
+
+Update Story can be used to change properties of a Story.  See [complete list of available fields](https://clubhouse.io/api/v1/#update-story)
+
+```php
+$story_id = 1234;
+
+$data = [
+    'epic_id' => 29,
+    'description' => 'Description update text'
+];
+
+$story = $clubhouse->update('stories', $story_id, $data);
+```
+
+### Delete
+
+Deletes a Story.
+
+```php
+$story_id = 300';
+
+$clubhouse->delete('stories', $story_id);
+```
 
 ## Users
 
