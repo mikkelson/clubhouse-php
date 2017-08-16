@@ -37,6 +37,7 @@ Before making useful calls to Clubhouse, create an instance of `Clubhouse`, prov
 ```php
     
     $token = '213901-dk9AJ-3SOJ-8dj9-KAAa0smsa';
+
     $clubhouse = new Clubhouse($token);
 
 ```
@@ -49,6 +50,7 @@ Get Epic returns information about the selected Epic.
 
 ```php
 $epic_id = '3000';
+
 $epic = $clubhouse->get('epics', $epic_id);
 ```
 
@@ -58,10 +60,12 @@ Update Epic can be used to update numerous fields in the Epic. See [complete lis
 
 ```php
 $epic_id = "4351";
+
 $data = [
     'description' => 'Keep your developers happy by providing detailed descriptions (-;',
     'state' => 'to do'
 ];
+
 $update = $clubhouse->update('epics', $epic_id, $data);
 ```
 
@@ -72,6 +76,7 @@ Deletes an Epic
 
 ```php
 $epic_id = '3000';
+
 $clubhouse->delete('epics', $epic_id);
 ```
 
@@ -93,6 +98,7 @@ $new_epic = [
     'name' => 'Terraforming of Mars',
     'description' => 'Should be easy. Couple of astropeople, a trowel each. Easy.'
 ];
+
 $epic = $clubhouse->create('epics', $new_epic);
 ```
 
@@ -140,6 +146,7 @@ Returns information about a User.
 
 ```php
 $user_id = '4JDaa9k-29d3-40s2-a4dc-a9bsd29sc';
+
 $user = $clubhouse->get('users', $user_id);
 ```
 
