@@ -1,5 +1,8 @@
 # Clubhouse.io REST API php Wrapper
 
+> **Warning**
+> Shortcut has re-branded and updated their API to version 3, as such this repo is no longer maintained. See the new [Shortcut PHP repo here](https://github.com/mikkelson/shortcut-php).
+
 This is a lightweight php wrapper for the Clubhouse.io REST version 1 API.
 
 ## Installation
